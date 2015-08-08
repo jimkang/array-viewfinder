@@ -12,11 +12,11 @@ test('Basic tests', function basicTests(t) {
   t.deepEqual(viewfinder.getWholeArray(), array, 'Gets whole array.');
 
   t.deepEqual(viewfinder.view(), [0, 1, 2], 'Current view is correct.');
-  t.deepEqual(viewfinder.setIndex(7), [7, 8, 9], 'Sets index.');
-  t.deepEqual(viewfinder.setIndex(9), [9], 'Sets index to end.');
-  t.deepEqual(viewfinder.setIndex(10), [9], 'Does not set index past end.');
-  t.deepEqual(viewfinder.setIndex(-10), [9], 'Does not set index past start.');
-  t.deepEqual(viewfinder.setIndex(0), [0, 1, 2], 'Sets index to start.');
+  t.deepEqual(viewfinder.goToIndex(7), [7, 8, 9], 'Sets index.');
+  t.deepEqual(viewfinder.goToIndex(9), [9], 'Sets index to end.');
+  t.deepEqual(viewfinder.goToIndex(10), [9], 'Does not set index past end.');
+  t.deepEqual(viewfinder.goToIndex(-10), [9], 'Does not set index past start.');
+  t.deepEqual(viewfinder.goToIndex(0), [0, 1, 2], 'Sets index to start.');
 
   t.deepEqual(viewfinder.view(), [0, 1, 2], 'Current view is correct.');
   t.deepEqual(viewfinder.shift(1), [1, 2, 3], 'Shifts correctly.');
