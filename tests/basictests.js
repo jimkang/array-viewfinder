@@ -64,3 +64,27 @@ test('Basic tests', function basicTests(t) {
 
   t.end();
 });
+
+test('Empty array', function emptyArray(t) {
+  viewfinder = createViewfinder({
+    array: [],
+    viewSize: 3
+  });
+
+  t.deepEqual(viewfinder.getWholeArray(), [], 'Gets whole array.');
+
+  t.deepEqual(viewfinder.view(), [], 'Current view is correct.');
+
+  viewfinder.goToIndex(10);
+  t.deepEqual(viewfinder.view(), [], 'Does not set index past end.');
+
+  viewfinder.goToIndex(-10);
+  t.deepEqual(viewfinder.view(), [], 'Does not set index past start.');
+
+  viewfinder.goToIndex(0);
+  t.deepEqual(viewfinder.view(), [], 'Sets index to start.');
+
+  t.deepEqual(viewfinder.shift(1), [], 'Shifts correctly.');
+
+  t.end();
+});
