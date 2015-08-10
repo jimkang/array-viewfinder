@@ -1,17 +1,10 @@
 array-viewfinder
 ==================
 
-To use node-module-boilerplate:
+array-viewfinder maintains a view into an array for you. This is sort of like a cursor and sort of like array paging, except:
 
-- Clone this repo.
-- Check out the branch that corresponds to the kind of project you want. (Use `git branch -v` to list the branches.)
-- Run `make init-project PROJECTNAME="your project name"`. Then, replace this README with information on how to get started with your project.
-
-This module is for something or other. For example:
-
-    code and what not
-
-Etc.!
+- It supports changing the view size (how many elements you can see at once).
+- It supports keeping your place when you change the array.
 
 Installation
 ------------
@@ -21,9 +14,32 @@ Installation
 Usage
 -----
 
-    var someFactory = require('array-viewfinder');
-    var thing = someFactory();
-    thing.use();
+    var createViewfinder = require('array-viewfinder');
+
+    var viewfinder = createViewfinder({
+      array: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+      viewSize: 3,
+      valueEqualityFn: strictEq
+    });
+
+    function strictEq(a, b) {
+      return a === b;
+    }
+
+    console.log(viewfinder.view()); // Output: [0, 1, 2]
+
+    viewfinder.shift(3);
+    console.log(viewfinder.view()); // Output: [3, 4, 5]
+
+    viewfinder.resizeView(6);
+    console.log(viewfinder.view()); // Output: [3, 4, 5, 6, 7, 8]
+
+    viewfinder.update([-10, -2, 3, 7, 25, 1000]);
+    console.log(viewfinder.view()); // Output: [3, 7, 25, 1000]
+
+`valueEqualityFn` is a function that takes two parameters and returns whether or not they are equal. When the viewfinder's array is updated to one with new contents, it uses `valueEqualityFn` to identify an equivalent element when looking to retain the place in the array for the view. In array in which elements cannot be identified uniquely, it may not be possible to provide a meaningful `valueEqualityFn` or to meaningfully retain a place in the array after an update.
+
+Without `valueEqualityFn`, the viewfinder will retain the index into the array it had before the update, regardless of changes to what that index points at after the update.
 
 Tests
 -----
