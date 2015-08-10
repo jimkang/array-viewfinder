@@ -14,18 +14,19 @@ test('Updating tests', function updating(t) {
     }
   });
 
-  viewfinder.update(array.concat([10, 11, 12]);
+  viewfinder.update(array.concat([10, 11, 12]));
   t.deepEqual(
     viewfinder.getWholeArray(),
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     'Gets array with added elements.'
   );
 
-  t.deepEqual(viewfinder.goToIndex(12), [12], 'Can view new element.');
+  viewfinder.goToIndex(12);
+  t.deepEqual(viewfinder.view(), [12], 'Can view new element.');
   
-  viewfinder.update(array.concat([10, 11, 12, 13, 14, 15, 16]);
+  viewfinder.update(array.concat([10, 11, 12, 13, 14, 15, 16]));
   t.deepEqual(
-    viewfinder.view(), [12, 13, 14]), 'Appended elements show in current view.'
+    viewfinder.view(), [12, 13, 14], 'Appended elements show in current view.'
   );
 
   viewfinder.update(array);
