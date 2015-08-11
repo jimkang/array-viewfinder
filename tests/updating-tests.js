@@ -9,10 +9,12 @@ test('Updating tests', function updating(t) {
     viewSize: 3,
     // There's arrays for which it is not possible to have a meaningful 
     // valueEqualityFn.
-    valueEqualityFn: function strictEq(a, b) {
-      return a === b;
-    }
+    valueEqualityFn: strictEq
   });
+
+  function strictEq(a, b) {
+    return a === b;
+  }
 
   viewfinder.update(array.concat([10, 11, 12]));
   t.deepEqual(
@@ -62,6 +64,37 @@ test('Updating tests', function updating(t) {
     viewfinder.view(),
     [4, 3, 2],
     'After sorting, index points to same element.'
+  );
+
+  t.end();
+});
+
+test('Empty array', function emptyArray(t) {
+  viewfinder = createViewfinder({
+    array: [],
+    viewSize: 3,
+    valueEqualityFn: strictEq
+  });
+
+  function strictEq(a, b) {
+    t.ok(a !== undefined, 'Comparator was not passed undefined.')
+    t.ok(b !== undefined, 'Comparator was not passed undefined.')
+    return a === b;
+  }
+
+  viewfinder.update([10, 11, 12]);
+  t.deepEqual(
+    viewfinder.getWholeArray(),
+    [10, 11, 12],
+    'Gets array with added elements.'
+  );
+
+
+  viewfinder.update([]);
+  t.deepEqual(
+    viewfinder.getWholeArray(),
+    [],
+    'Gets an empty array.'
   );
 
   t.end();

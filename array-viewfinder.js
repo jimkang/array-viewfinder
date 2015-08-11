@@ -45,9 +45,20 @@ function createArrayViewFinder(createOpts) {
   }
 
   function update(newArray) {
-    var indexElement = array[index];
+    var indexElement;
+    var restoredIndex;
+    var indexIsInBounds = (index > -1 && index < array.length);
+
+    if (indexIsInBounds) {
+      indexElement = array[index];
+    }
+
     array = newArray;
-    var restoredIndex = getIndexOfElement(indexElement, index);
+
+    if (indexIsInBounds) {
+      restoredIndex = getIndexOfElement(indexElement, index);
+    }
+
     if (restoredIndex !== undefined) {
       goToIndex(restoredIndex);
     }
@@ -86,7 +97,7 @@ function createArrayViewFinder(createOpts) {
       else {
         var nextSearchDirection;
         var nextJumpSize;
-        debugger;
+
         if (leftSearchComplete && rightSearchComplete) {
           return undefined;
         }
