@@ -22,6 +22,8 @@ test('Basic tests', function basicTests(t) {
   viewfinder.goToIndex(10);
   t.deepEqual(viewfinder.view(), [9], 'Does not set index past end.');
 
+  t.equal(viewfinder.getIndex(), 9, 'Gets current index.');
+
   viewfinder.goToIndex(-10);
   t.deepEqual(viewfinder.view(), [0, 1, 2], 'Does not set index past start.');
 

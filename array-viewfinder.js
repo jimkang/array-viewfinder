@@ -28,6 +28,10 @@ function createArrayViewFinder(createOpts) {
     index = newIndex;
   }
 
+  function getIndex() {
+    return index;
+  }
+
   function shift(delta) {
     goToIndex(index + delta);
     return view();
@@ -139,6 +143,7 @@ function createArrayViewFinder(createOpts) {
     getWholeArray: getWholeArray,
     view: view,
     goToIndex: goToIndex,
+    getIndex: getIndex,
     shift: shift,
     resizeView: resizeView,
     getViewSize: getViewSize,
