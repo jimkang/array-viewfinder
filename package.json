@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jimkang/array-viewfinder",
   "devDependencies": {
+    "d3-arrays": "0.0.4",
     "tape": "^3.0.3"
   },
   "dependencies": {}
