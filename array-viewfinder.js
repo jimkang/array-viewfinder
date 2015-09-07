@@ -120,20 +120,22 @@ function createArrayViewFinder(createOpts) {
 
         var nextIndex = startIndex + nextSearchDirection * nextJumpSize;
 
-        if (nextIndex <= 0) {
+        if (nextIndex < 0) {
           leftSearchComplete = true;
           nextIndex = startIndex + lastJumpSize + 1;
         }
-        if (nextIndex >= array.length - 1) {
+        if (nextIndex >= array.length) {
           rightSearchComplete = true;
           nextIndex = startIndex - lastJumpSize - 1;
         }
 
-        console.log('nextIndex', nextIndex);
-
         return getIndexOfElement(
-          element, nextIndex, nextSearchDirection, nextJumpSize,
-          leftSearchComplete, rightSearchComplete
+          element,
+          nextIndex,
+          nextSearchDirection,
+          nextJumpSize,
+          leftSearchComplete,
+          rightSearchComplete
         );
       }
     }
