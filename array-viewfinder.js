@@ -147,7 +147,8 @@ function createArrayViewFinder(createOpts) {
     shift: shift,
     resizeView: resizeView,
     getViewSize: getViewSize,
-    update: update
+    update: update,
+    getIndexOfElement: getIndexOfElement
   };
 }
 
