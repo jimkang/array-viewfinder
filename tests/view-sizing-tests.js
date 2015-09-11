@@ -25,14 +25,14 @@ test('View after sizing tests', function basicTests(t) {
     'View is correct after update that adds to the left.'
   );
 
-  viewfinder.update(range(-20, 110));
+  viewfinder.update(range(-22, 110));
   t.deepEqual(
     viewfinder.view(),
     range(0, 10),
-    'View is OK after update that adds to the left again.'
+    'View is OK after update that adds a different quantity to the left.'
   );
 
-  viewfinder.update(range(-20, 120));
+  viewfinder.update(range(-22, 128));
   t.deepEqual(
     viewfinder.view(),
     range(0, 10),

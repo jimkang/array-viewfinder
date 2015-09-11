@@ -122,11 +122,11 @@ function createArrayViewFinder(createOpts) {
 
         if (nextIndex < 0) {
           leftSearchComplete = true;
-          nextIndex = startIndex + lastJumpSize + 1;
+          nextIndex = startIndex + 1;
         }
         if (nextIndex >= array.length) {
           rightSearchComplete = true;
-          nextIndex = startIndex - lastJumpSize - 1;
+          nextIndex = startIndex - 1;
         }
 
         return getIndexOfElement(
